@@ -2,6 +2,7 @@ package com.example.colleaugeinfo;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.colleaugeinfo.model.Colleague;
@@ -17,8 +18,8 @@ public class ColleagueRepository {
     private ColleagueDao colleagueDao ;
     private LiveData<List<Colleague>> allColleague ;
 
-    public ColleagueRepository(Application application){
-        AppDatabase appDatabase = AppDatabase.getInstance(application);
+    public ColleagueRepository(Context context){
+        AppDatabase appDatabase = AppDatabase.getInstance(context);
         colleagueDao = appDatabase.colleagueDao() ;
         allColleague = colleagueDao.getAllColleague() ;
     }
