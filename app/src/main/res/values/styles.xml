@@ -8,4 +8,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- AnnaNovas Toolbar -->
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- navigation style  -->
+    <style name="StyleFor.NavigationDrawer" parent="ThemeOverlay.AppCompat.Light">
+        <!--<item name="colorControlHighlight">@color/text_color</item>-->
+        <item name="color">@color/text_color</item>
+    </style>
+    <!-- AnnaNovas Toolbar -->
+
+    <!-- My Toolbar -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/text_color_white</item>
+    </style>
+    <!-- My Toolbar -->
+
 </resources>

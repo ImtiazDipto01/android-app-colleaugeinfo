@@ -12,13 +12,15 @@ public class Colleague {
     private String designation ;
     private String address ;
     private String phone ;
+    private String officeName ;
 
-    public Colleague(String id, String name, String designation, String address, String phone) {
+    public Colleague(String id, String name, String designation, String address, String phone, String officeName) {
         this.id = id;
         this.name = name;
         this.designation = designation;
         this.address = address;
         this.phone = phone;
+        this.officeName = officeName ;
     }
 
     public String getId() {
