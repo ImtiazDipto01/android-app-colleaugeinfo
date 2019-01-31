@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ColleaugeInfo</string>
+    <string name="action_add">ADD COLLEAGUE</string>
+    <string name="my_colleague">My Colleague</string>
 </resources>

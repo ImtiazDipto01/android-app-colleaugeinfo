@@ -1,5 +1,6 @@
 package com.example.colleaugeinfo.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,6 +8,7 @@ import androidx.room.PrimaryKey;
 public class Colleague {
 
     @PrimaryKey
+    @NonNull
     private String id ;
     private String name;
     private String designation ;
@@ -38,7 +40,9 @@ public class Colleague {
     public String getAddress() {
         return address;
     }
-
+    public String getOfficeName() {
+        return officeName;
+    }
     public String getPhone() {
         return phone;
     }
