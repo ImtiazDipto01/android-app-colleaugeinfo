@@ -1,41 +1,48 @@
 package com.example.colleaugeinfo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.colleaugeinfo.model.Colleague;
 import com.example.colleaugeinfo.viewmodel.ColleagueViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ColleagueListActivity extends AppCompatActivity implements Observer<List<Colleague>> {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private ColleagueViewModel colleagueViewModel ;
+public class ColleagueListActivity extends AppCompatActivity implements Observer<List<Colleague>>, ColleagueAdapter.ClickListener {
+
+    @BindView(R.id.rvColleague)
+    RecyclerView rvColleague;
+    private ColleagueViewModel colleagueViewModel;
+    private ColleagueAdapter colleagueAdapter;
+    private List<Colleague> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         initInstance();
-        toolbarWithoutDrawer() ;
+        toolbarWithoutDrawer();
     }
 
     private void initInstance() {
+        list = new ArrayList<>();
         colleagueViewModel = ViewModelProviders.of(this).get(ColleagueViewModel.class);
-        Observer<List<Colleague>> observer = this ;
+        Observer<List<Colleague>> observer = this;
         colleagueViewModel.getAllColleague().observe(this, observer);
     }
 
@@ -44,8 +51,22 @@ public class ColleagueListActivity extends AppCompatActivity implements Observer
         // update Recyclerview
     }
 
-    private void generateRecyclerView(){
+    private void generateRecyclerView(List<Colleague> colleaguesList) {
+        if (colleagueAdapter == null) {
+            list.addAll(colleaguesList);
+            colleagueAdapter = new ColleagueAdapter(ColleagueListActivity.this, list);
+            colleagueAdapter.setClickListener(this);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+            rvColleague.setLayoutManager(linearLayoutManager);
+            rvColleague.setItemAnimator(new DefaultItemAnimator());
+            rvColleague.setAdapter(colleagueAdapter);
 
+        }
+        else{
+            list.clear();
+            list.addAll(colleaguesList);
+            colleagueAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -58,7 +79,7 @@ public class ColleagueListActivity extends AppCompatActivity implements Observer
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_add:{
+            case R.id.action_add: {
                 Intent intent = new Intent(ColleagueListActivity.this, AddColleagueActivity.class);
                 startActivity(intent);
                 return true;
@@ -89,5 +110,10 @@ public class ColleagueListActivity extends AppCompatActivity implements Observer
                 onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void itemClicked(int pos) {
+
     }
 }
