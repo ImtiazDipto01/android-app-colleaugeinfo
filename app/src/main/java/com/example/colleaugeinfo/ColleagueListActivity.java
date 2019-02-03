@@ -49,6 +49,7 @@ public class ColleagueListActivity extends AppCompatActivity implements Observer
     @Override
     public void onChanged(List<Colleague> colleagues) {
         // update Recyclerview
+        generateRecyclerView(colleagues);
     }
 
     private void generateRecyclerView(List<Colleague> colleaguesList) {
