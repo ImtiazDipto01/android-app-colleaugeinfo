@@ -49,6 +49,7 @@ public class ColleagueAdapter extends RecyclerView.Adapter<ColleagueAdapter.MyVi
         holder.tvOffice.setText(colleague.getOfficeName());
         holder.tvAddress.setText(colleague.getAddress());
         holder.tvDesignation.setText(colleague.getDesignation());
+        holder.tvPhone.setText(colleague.getPhone());
     }
 
     @Override
