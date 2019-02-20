@@ -50,6 +50,15 @@ public class ColleagueAdapter extends RecyclerView.Adapter<ColleagueAdapter.MyVi
         holder.tvAddress.setText(colleague.getAddress());
         holder.tvDesignation.setText(colleague.getDesignation());
         holder.tvPhone.setText(colleague.getPhone());
+
+        holder.layoutRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickListener != null){
+                    clickListener.itemClicked(holder.getAdapterPosition());
+                }
+            }
+        });
     }
 
     @Override

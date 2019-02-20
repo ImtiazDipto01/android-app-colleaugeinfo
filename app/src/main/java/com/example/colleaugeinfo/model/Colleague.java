@@ -1,11 +1,13 @@
 package com.example.colleaugeinfo.model;
 
+import java.io.Serializable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "colleague")
-public class Colleague {
+public class Colleague implements Serializable {
 
     @PrimaryKey
     @NonNull

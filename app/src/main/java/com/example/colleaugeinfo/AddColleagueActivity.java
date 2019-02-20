@@ -38,6 +38,8 @@ public class AddColleagueActivity extends AppCompatActivity {
     private AppDatabase appDb;
     private ColleagueViewModel colleagueViewModel ;
     private static final String TAG = "AddColleagueActivity";
+    private int updateFlag = 0 ;
+    public static final int UPDATE = 1, ADD_NEW = 0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,19 @@ public class AddColleagueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_colleague);
         ButterKnife.bind(this);
         initInstance();
+        getValuesFromIntent();
+    }
+
+    private void getValuesFromIntent() {
+        if(getIntent().hasExtra(Utils.COLLEAGUE_INFO)){
+            updateFlag = UPDATE ;
+            colleague = (Colleague) getIntent().getSerializableExtra(Utils.COLLEAGUE_INFO);
+            etName.setText(colleague.getName());
+            etDesignation.setText(colleague.getDesignation());
+            etAddress.setText(colleague.getAddress());
+            etOffice.setText(colleague.getOfficeName());
+            etPhone.setText(colleague.getPhone());
+        }
     }
 
     private void initInstance() {
@@ -65,14 +80,19 @@ public class AddColleagueActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSave)
     public void onSaveClicked() {
-        colleague = new Colleague(generateUniqueProcessId("CL"),
-                etName.getText().toString(),
-                etDesignation.getText().toString(),
-                etAddress.getText().toString(),
-                etPhone.getText().toString(),
-                etOffice.getText().toString());
+        if(updateFlag == ADD_NEW){
+            colleague = new Colleague(generateUniqueProcessId("CL"),
+                    etName.getText().toString(),
+                    etDesignation.getText().toString(),
+                    etAddress.getText().toString(),
+                    etPhone.getText().toString(),
+                    etOffice.getText().toString());
 
-        colleagueViewModel.insert(colleague);
-        finish();
+            colleagueViewModel.insert(colleague);
+            finish();
+        }
+        else{
+
+        }
     }
 }

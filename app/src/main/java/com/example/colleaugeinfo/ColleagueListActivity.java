@@ -115,6 +115,9 @@ public class ColleagueListActivity extends AppCompatActivity implements Observer
 
     @Override
     public void itemClicked(int pos) {
-
+        Colleague colleague = list.get(pos);
+        Intent intent = new Intent(ColleagueListActivity.this, AddColleagueActivity.class);
+        intent.putExtra(Utils.COLLEAGUE_INFO, colleague);
+        startActivity(intent);
     }
 }
