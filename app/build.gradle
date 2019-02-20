@@ -40,6 +40,9 @@ dependencies {
     //support design
     implementation 'com.google.android.material:material:1.0.0-rc01'
 
+    //recyclerview
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
@@ -47,9 +50,6 @@ dependencies {
     // room
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
-    //recyclerview
-    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 
     //cardview
     implementation 'androidx.cardview:cardview:1.0.0'
